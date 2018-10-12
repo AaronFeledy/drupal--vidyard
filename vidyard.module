@@ -1,0 +1,32 @@
+<?php
+
+/**
+ * @file
+ * Contains vidyard.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function vidyard_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the Vidyard module.
+    case 'help.page.vidyard':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('A Media source and oEmbed provider for the Vidyard video platform.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_media_source_info_alter().
+ */
+function vidyard_media_source_info_alter(array &$sources) {
+  // Add Vidyard as an available provider for the Remote Video media source.
+  $sources['oembed:video']['providers'][] = "Vidyard";
+}

@@ -46,11 +46,11 @@ class VidyardProvider extends ProviderRepository {
           'schemes' => [
             'http(s)://embed.vidyard.com/share/*',
             'http(s)://play.vidyard.com/*',
-            'http(s)://*.hubs.vidyard.com/watch/*'
+            'http(s)://*.hubs.vidyard.com/watch/*',
           ],
-          'formats' => ['json']
-        ]
-      ]
+          'formats' => ['json'],
+        ],
+      ],
     ];
 
     $provider['Vidyard'] = new Provider($provider_definition['provider_name'], $provider_definition['provider_url'], $provider_definition['endpoints']);
@@ -58,4 +58,5 @@ class VidyardProvider extends ProviderRepository {
     return $provider + $keyed_providers;
 
   }
+
 }

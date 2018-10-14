@@ -42,7 +42,7 @@ class VidyardResourceFetcher extends ResourceFetcher {
     // Here we parse the oEmbed resource url and extract the Vidyard video id so we can
     // use it to cobble together a thumbnail URL.
     $query_string = parse_url($url, PHP_URL_QUERY);
-    parse_str($query_string,$query_values);
+    parse_str($query_string, $query_values);
 
     $video_id = $this->getIdFromUrl($query_values['url']);
 
@@ -53,7 +53,7 @@ class VidyardResourceFetcher extends ResourceFetcher {
       $data += [
         'thumbnail_url' => sprintf("https://play.vidyard.com/%s.jpg", $video_id),
         'thumbnail_width' => $data['width'],
-        'thumbnail_height' => $data['height']
+        'thumbnail_height' => $data['height'],
       ];
     }
 
@@ -65,6 +65,7 @@ class VidyardResourceFetcher extends ResourceFetcher {
    *
    * @param string $url
    *   The URL for the Vidyard video.
+   *
    * @return mixed
    *   Returns a string containing the video id or FALSE if and ID is not found.
    */

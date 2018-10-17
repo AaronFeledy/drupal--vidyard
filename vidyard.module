@@ -30,3 +30,34 @@ function vidyard_media_source_info_alter(array &$sources) {
   // Add Vidyard as an available provider for the Remote Video media source.
   $sources['oembed:video']['providers'][] = "Vidyard";
 }
+
+/**
+ * Implements hook_field_formatter_third_party_settings_form().
+ */
+function vidyard_field_formatter_third_party_settings_form(\Drupal\Core\Field\FormatterInterface $plugin, \Drupal\Core\Field\FieldDefinitionInterface $field_definition, $view_mode, $form, \Drupal\Core\Form\FormStateInterface $form_state) {
+  $element = array();
+
+  if ($plugin->getPluginId() == 'oembed') {
+    $element = [
+      'vidyard_responsive' => [
+        '#type' => 'checkbox',
+        '#title' => t('Use responsive embed code for Vidyard videos'),
+        '#default_value' => $plugin->getThirdPartySetting('vidyard', 'vidyard_responsive'),
+      ],
+    ];
+  }
+  return $element;
+}
+
+/**
+ * Implements hook_field_formatter_settings_summary_alter().
+ */
+function vidyard_field_formatter_settings_summary_alter(&$summary, $context) {
+  /** @var \Drupal\Core\Field\FormatterInterface $formatter */
+  $formatter = $context['formatter'];
+  if ($formatter->getPluginId() == 'oembed') {
+    if ($formatter->getThirdPartySetting('vidyard', 'vidyard_responsive')) {
+      $summary[] = t('Responsive embed enabled for Vidyard videos.');
+    }
+  }
+}

@@ -5,6 +5,9 @@
  * Contains vidyard.module.
  */
 
+use Drupal\Core\Field\FormatterInterface;
+use Drupal\Core\Field\FieldDefinitionInterface;
+use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
 
 /**
@@ -34,7 +37,7 @@ function vidyard_media_source_info_alter(array &$sources) {
 /**
  * Implements hook_field_formatter_third_party_settings_form().
  */
-function vidyard_field_formatter_third_party_settings_form(\Drupal\Core\Field\FormatterInterface $plugin, \Drupal\Core\Field\FieldDefinitionInterface $field_definition, $view_mode, $form, \Drupal\Core\Form\FormStateInterface $form_state) {
+function vidyard_field_formatter_third_party_settings_form(FormatterInterface $plugin, FieldDefinitionInterface $field_definition, $view_mode, $form, FormStateInterface $form_state) {
   $element = array();
 
   // Add a setting to enable Vidyard's responsive embed code to the oEmbed field

@@ -43,6 +43,7 @@ function vidyard_field_formatter_third_party_settings_form(FormatterInterface $p
   // Add a setting to enable Vidyard's responsive embed code to the oEmbed field
   // display formatter options form.
   if ($plugin->getPluginId() == 'oembed') {
+    // TODO: Only add this if Vidyard is a provider on this field.
     $element = [
       'vidyard_responsive' => [
         '#type' => 'checkbox',

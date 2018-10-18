@@ -37,6 +37,8 @@ function vidyard_media_source_info_alter(array &$sources) {
 function vidyard_field_formatter_third_party_settings_form(\Drupal\Core\Field\FormatterInterface $plugin, \Drupal\Core\Field\FieldDefinitionInterface $field_definition, $view_mode, $form, \Drupal\Core\Form\FormStateInterface $form_state) {
   $element = array();
 
+  // Add a setting to enable Vidyard's responsive embed code to the oEmbed field
+  // display formatter options form.
   if ($plugin->getPluginId() == 'oembed') {
     $element = [
       'vidyard_responsive' => [
@@ -53,6 +55,8 @@ function vidyard_field_formatter_third_party_settings_form(\Drupal\Core\Field\Fo
  * Implements hook_field_formatter_settings_summary_alter().
  */
 function vidyard_field_formatter_settings_summary_alter(&$summary, $context) {
+  // Add a line to the oEmbed field formatter settings summary to indicate that
+  // Vidyard's responsive embed code setting is enabled.
   /** @var \Drupal\Core\Field\FormatterInterface $formatter */
   $formatter = $context['formatter'];
   if ($formatter->getPluginId() == 'oembed') {

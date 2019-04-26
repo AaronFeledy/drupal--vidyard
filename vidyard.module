@@ -94,20 +94,20 @@ function vidyard_media_view_alter(array &$build, EntityInterface $entity, Entity
       foreach ($build[$name] as $key => $field_value) {
         if (is_numeric($key)) {
           $vidyard_url = $entity->get($name)->getValue()[$key]['value'];
-          $vidyard_id = vidyard_get_id($vidyard_url);
-
-          $build[$name][$key]['#tag'] = 'img';
-          $build[$name][$key]['#attributes']['src'] = sprintf("https://play.vidyard.com/%s.jpg", $vidyard_id); //TODO: Use local thumbnail image
-          $build[$name][$key]['#attributes']['class'][] = 'vidyard-player-embed';
-          $build[$name][$key]['#attributes']['data-uuid'] = $vidyard_id;
-          $build[$name][$key]['#attributes']['data-v'] = '4';
-          $build[$name][$key]['#attributes']['data-type'] = 'inline';
-          $build[$name][$key]['#attributes']['data-preload'] = 'none'; //TODO: Make this a setting
-          unset($build[$name][$key]['#attributes']['frameborder']);
-          unset($build[$name][$key]['#attributes']['scrolling']);
-          unset($build[$name][$key]['#attributes']['allowtransparency']);
-          unset($build[$name][$key]['#attributes']['width']);
-          unset($build[$name][$key]['#attributes']['height']);
+          if ($vidyard_id = vidyard_get_id($vidyard_url)) {
+            $build[$name][$key]['#tag'] = 'img';
+            $build[$name][$key]['#attributes']['src'] = sprintf("https://play.vidyard.com/%s.jpg", $vidyard_id); //TODO: Use local thumbnail image
+            $build[$name][$key]['#attributes']['class'][] = 'vidyard-player-embed';
+            $build[$name][$key]['#attributes']['data-uuid'] = $vidyard_id;
+            $build[$name][$key]['#attributes']['data-v'] = '4';
+            $build[$name][$key]['#attributes']['data-type'] = 'inline';
+            $build[$name][$key]['#attributes']['data-preload'] = 'none'; //TODO: Make this a setting
+            unset($build[$name][$key]['#attributes']['frameborder']);
+            unset($build[$name][$key]['#attributes']['scrolling']);
+            unset($build[$name][$key]['#attributes']['allowtransparency']);
+            unset($build[$name][$key]['#attributes']['width']);
+            unset($build[$name][$key]['#attributes']['height']);
+          }
         }
       }
       break;

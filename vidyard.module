@@ -79,7 +79,7 @@ function vidyard_field_formatter_settings_summary_alter(&$summary, $context) {
 function vidyard_media_view_alter(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display) {
   // Alter fields that have Vidyard responsive embed enabled.
   foreach ($display->getComponents() as $name => $options) {
-    if (!empty($options['third_party_settings']['vidyard']['responsive'])) {
+    if (!empty($options['third_party_settings']['vidyard']['vidyard_responsive'])) {
       // Add the Vidyard embed API script to <head>
       $build['#attached']['library'][] = 'vidyard/embed-v4';
 

@@ -11,6 +11,6 @@
     "source": "http://cgit.drupalcode.org/vidyard"
   },
   "require": {
-    "drupal/core": "~8.6"
+    "drupal/core": "~8.6 || ~9"
   }
 }

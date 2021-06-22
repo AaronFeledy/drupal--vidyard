@@ -1,0 +1,31 @@
+name: drupal-vidyard
+recipe: drupal9
+config:
+  webroot: .dev/web
+
+services:
+  appserver:
+    overrides:
+      environment:
+        XDEBUG_MODE: 'debug'
+    build:
+      - cd .dev && composer install
+    run:
+      - cd .dev && /app/.dev/vendor/bin/drush site:install --db-url=mysql://drupal9:drupal9@database:3306/drupal9 --account-name=vidyard --account-pass=vidyard --site-name=Vidyard --yes
+
+tooling:
+  xdebug-on:
+    service: appserver
+    description: Enable Xdebug.
+    user: root
+    cmd:
+      - docker-php-ext-enable xdebug && pkill -o -USR2 php-fpm || /etc/init.d/apache2 reload
+      - tput setaf 2 && echo "Xdebug On" && tput sgr 0 && echo
+
+  xdebug-off:
+    service: appserver
+    description: Disable Xdebug.
+    user: root
+    cmd:
+      - rm /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && pkill -o -USR2 php-fpm || /etc/init.d/apache2 reload
+      - tput setaf 1 && echo "Xdebug Off" && tput sgr 0 && echo

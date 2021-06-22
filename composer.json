@@ -4,6 +4,13 @@
   "description": "A Media source and oEmbed provider for the Vidyard video platform.",
   "keywords": ["Drupal"],
   "license": "GPL-2.0+",
+  "authors": [
+    {
+      "name": "Aaron Feledy (arrow)",
+      "homepage": "https://www.drupal.org/u/arrow",
+      "role": "Maintainer"
+    }
+  ],
   "homepage": "https://www.drupal.org/project/vidyard",
   "minimum-stability": "dev",
   "support": {

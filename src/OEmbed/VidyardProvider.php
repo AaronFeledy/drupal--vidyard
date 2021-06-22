@@ -47,6 +47,7 @@ class VidyardProvider extends ProviderRepository {
             'http(s)://embed.vidyard.com/share/*',
             'http(s)://play.vidyard.com/*',
             'http(s)://*.hubs.vidyard.com/watch/*',
+            'http(s)://share.vidyard.com/watch/*',
           ],
           'formats' => ['json'],
         ],

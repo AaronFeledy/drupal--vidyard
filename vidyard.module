@@ -125,7 +125,7 @@ function vidyard_media_view_alter(array &$build, EntityInterface $entity, Entity
  *   Returns a string containing the video id or FALSE if and ID is not found.
  */
 function vidyard_get_id($url) {
-  $reg = "/(http(s?):)?\/\/[a-zA-Z0-9]+\.vidyard.com\/(?:share|watch)?(\/)?(?<id>[a-zA-Z0-9_-]+)/";
+  $reg = "/(http(s?):)?\/\/(?:[a-zA-Z0-9]+\.)?[a-zA-Z0-9]+\.vidyard.com\/(?:share|watch)?(\/)?(?<id>[a-zA-Z0-9_-]+)/";
   preg_match($reg, $url, $matches);
 
   return isset($matches['id']) ? $matches['id'] : FALSE;

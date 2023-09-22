@@ -2,6 +2,8 @@
 
 namespace Drupal\vidyard\OEmbed;
 
+use Drupal\Core\KeyValueStore\KeyValueFactoryInterface;
+use Drupal\Core\Logger\LoggerChannelFactoryInterface;
 use Drupal\media\OEmbed\ProviderRepository;
 use Drupal\media\OEmbed\ProviderRepositoryInterface;
 use Drupal\media\OEmbed\Provider;
@@ -23,9 +25,9 @@ class VidyardProvider extends ProviderRepository {
   /**
    * @inheritdoc
    */
-  public function __construct(ProviderRepositoryInterface $inner_service, ClientInterface $http_client, ConfigFactoryInterface $config_factory, TimeInterface $time, CacheBackendInterface $cache_backend = NULL, $max_age = 604800) {
+  public function __construct(ProviderRepositoryInterface $inner_service, ClientInterface $http_client, ConfigFactoryInterface $config_factory, TimeInterface $time, KeyValueFactoryInterface $key_value_factory,  LoggerChannelFactoryInterface $logger_factory) {
     $this->innerService = $inner_service;
-    parent::__construct($http_client, $config_factory, $time, $cache_backend, $max_age);
+    parent::__construct($http_client, $config_factory, $time, $key_value_factory, $logger_factory);
   }
 
   /**

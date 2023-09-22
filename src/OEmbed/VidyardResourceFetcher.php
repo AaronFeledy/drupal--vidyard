@@ -25,9 +25,9 @@ class VidyardResourceFetcher extends ResourceFetcher {
   /**
    * @inheritdoc
    */
-  public function __construct(ResourceFetcherInterface $inner_service, ClientInterface $http_client, ProviderRepositoryInterface $providers, CacheBackendInterface $cache_backend = NULL) {
+  public function __construct(ResourceFetcherInterface $inner_service, ClientInterface $http_client, ProviderRepositoryInterface $providers, CacheBackendInterface $cache_backend) {
     $this->innerService = $inner_service;
-    parent::__construct($http_client, $providers, $cache_backend = NULL);
+    parent::__construct($http_client, $providers, $cache_backend);
   }
 
   /**
